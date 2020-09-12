@@ -6,31 +6,31 @@
 #include "LevelManager.h"
 #include "ColorSwitching.generated.h"
 
+UENUM(BlueprintType)
+enum ObjectColor
+{
+	RED, BLUE, GREEN, YELLOW
+};
+
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class FILLBALL_API AColorSwitching : public ALevelManager
 {
 	GENERATED_BODY()
-	
-public:
-	enum Color 
-	{
-		RED, BLUE, GREEN, YELLOW
-	};
 
 public:
 	UPROPERTY(BlueprintReadOnly)
-		AColorSwitching::Color currentColor;
+		TEnumAsByte<ObjectColor> currentColor;
 
 public:
 	AColorSwitching();
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
-		void ChangeColor(Color newColor);
-
+		void ChangeColor(TEnumAsByte<ObjectColor> newColor);
+	
 public:
 
 

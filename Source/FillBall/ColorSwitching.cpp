@@ -7,10 +7,10 @@
 
 AColorSwitching::AColorSwitching() 
 {
-	currentColor = Color::RED;
+	currentColor = ObjectColor::RED;
 }
 
-void AColorSwitching::ChangeColor(AColorSwitching::Color newColor) 
+void AColorSwitching::ChangeColor(TEnumAsByte<ObjectColor> newColor)
 {
 	return;
 }
