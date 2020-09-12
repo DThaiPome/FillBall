@@ -10,6 +10,11 @@ AColorSwitching::AColorSwitching()
 	currentColor = ObjectColor::RED;
 }
 
+void AColorSwitching::RegisterColorActor(AColorActor* newColorActor)
+{
+
+}
+
 void AColorSwitching::ChangeColor(TEnumAsByte<ObjectColor> newColor)
 {
 	return;

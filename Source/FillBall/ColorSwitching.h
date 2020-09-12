@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "LevelManager.h"
+#include "ColorActor.h"
 #include "ColorSwitching.generated.h"
 
 UENUM(BlueprintType)
@@ -24,10 +25,15 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 		TEnumAsByte<ObjectColor> currentColor;
 
+private:
+	std::list<AColorActor*> colorActors;
+
 public:
 	AColorSwitching();
 
 public:
+	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
+		void RegisterColorActor(AColorActor* newColorActor);
 	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
 		void ChangeColor(TEnumAsByte<ObjectColor> newColor);
 	
