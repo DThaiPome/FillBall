@@ -3,3 +3,17 @@
 
 #include "ColorSwitching.h"
 
+
+
+AColorSwitching::AColorSwitching() 
+{
+	currentColor = Color::RED;
+}
+
+void AColorSwitching::ChangeColor(AColorSwitching::Color newColor) 
+{
+	return;
+}
+
+
+

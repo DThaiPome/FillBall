@@ -14,4 +14,24 @@ class FILLBALL_API AColorSwitching : public ALevelManager
 {
 	GENERATED_BODY()
 	
+public:
+	enum Color 
+	{
+		RED, BLUE, GREEN, YELLOW
+	};
+
+public:
+	UPROPERTY(BlueprintReadOnly)
+		AColorSwitching::Color currentColor;
+
+public:
+	AColorSwitching();
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
+		void ChangeColor(Color newColor);
+
+public:
+
+
 };
