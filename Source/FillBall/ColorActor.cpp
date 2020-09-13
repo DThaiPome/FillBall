@@ -33,17 +33,17 @@ void AColorActor::RegisterColorActor(AColorSwitching* gameMode)
 void AColorActor::ColorChanged(TEnumAsByte<ObjectColor> color)
 {
 	bool colorMatches = color == objectColor;
-	SetActive(this, colorMatches);
+	SetActive(colorMatches);
 }
 
-void SetActive(AActor* actor, bool active)
+void AColorActor::SetActive(bool active)
 {
-	actor->SetActorHiddenInGame(!active);
+	this->SetActorHiddenInGame(!active);
 
 	// Disables collision components
-	actor->SetActorEnableCollision(active);
+	this->SetActorEnableCollision(active);
 
 	// Stops the Actor from ticking
-	actor->SetActorTickEnabled(active);
+	this->SetActorTickEnabled(active);
 }
 

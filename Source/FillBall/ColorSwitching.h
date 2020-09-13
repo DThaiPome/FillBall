@@ -32,7 +32,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
 		void ChangeColor(TEnumAsByte<ObjectColor> newColor);
 	
-public:
-
-
+protected:
+	void UpdateColorActors(TEnumAsByte<ObjectColor> newColor);
 };
