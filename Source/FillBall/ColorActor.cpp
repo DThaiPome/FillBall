@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ColorActor.h"
+#include "ObjectColor.h"
 
 // Sets default values
 AColorActor::AColorActor()
@@ -27,5 +28,10 @@ void AColorActor::Tick(float DeltaTime)
 void AColorActor::RegisterColorActor(AColorSwitching* gameMode)
 {
 	gameMode->RegisterColorActor(this);
+}
+
+void AColorActor::ColorChanged(TEnumAsByte<ObjectColor> color)
+{
+	return;
 }
 

@@ -2,6 +2,7 @@
 
 
 #include "ColorSwitching.h"
+#include "ObjectColor.h"
 
 
 
@@ -12,12 +13,24 @@ AColorSwitching::AColorSwitching()
 
 void AColorSwitching::RegisterColorActor(AColorActor* newColorActor)
 {
-
+	colorActors->push_front(newColorActor);
 }
 
 void AColorSwitching::ChangeColor(TEnumAsByte<ObjectColor> newColor)
 {
-	return;
+	currentColor = newColor;
+
+	
+}
+
+void UpdateColorActors(TEnumAsByte<ObjectColor> newColor, std::list<AColorActor*>* listOfActors)
+{
+	std::list<AColorActor*>::iterator it;
+
+	for (it = listOfActors->begin(); it != listOfActors->end(); it++)
+	{
+		(*it)->ColorChanged(newColor);
+	}
 }
 
 

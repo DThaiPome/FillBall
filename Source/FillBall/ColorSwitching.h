@@ -5,13 +5,8 @@
 #include "CoreMinimal.h"
 #include "LevelManager.h"
 #include "ColorActor.h"
+#include "ObjectColor.h"
 #include "ColorSwitching.generated.h"
-
-UENUM(BlueprintType)
-enum ObjectColor
-{
-	RED, BLUE, GREEN, YELLOW
-};
 
 /**
  * 
@@ -26,7 +21,7 @@ public:
 		TEnumAsByte<ObjectColor> currentColor;
 
 private:
-	std::list<AColorActor*> colorActors;
+	std::list<AColorActor*>* colorActors = new std::list<AColorActor*>();
 
 public:
 	AColorSwitching();
