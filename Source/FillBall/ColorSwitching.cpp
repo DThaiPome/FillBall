@@ -20,7 +20,7 @@ void AColorSwitching::ChangeColor(TEnumAsByte<ObjectColor> newColor)
 {
 	currentColor = newColor;
 
-	
+	UpdateColorActors(newColor, colorActors);
 }
 
 void UpdateColorActors(TEnumAsByte<ObjectColor> newColor, std::list<AColorActor*>* listOfActors)
