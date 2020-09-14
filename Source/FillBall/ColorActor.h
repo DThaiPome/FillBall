@@ -35,6 +35,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "ColorActor")
 		void ColorChanged(TEnumAsByte<ObjectColor> newColor);
 
+	UFUNCTION(BlueprintCallable, Category = "ColorActor")
+		void UpdateMaterialColor();
+
 protected:
 	void SetActive(bool active);
+	
 };

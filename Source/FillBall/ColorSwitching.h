@@ -44,6 +44,7 @@ public:
 		void RegisterColorActor(AColorActor* newColorActor);
 	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
 		void ChangeColor(TEnumAsByte<ObjectColor> newColor);
+	static FLinearColor ColorToValue(TEnumAsByte<ObjectColor> color);
 	
 protected:
 	void UpdateColorActors(TEnumAsByte<ObjectColor> newColor);

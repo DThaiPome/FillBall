@@ -34,5 +34,20 @@ void AColorSwitching::UpdateColorActors(TEnumAsByte<ObjectColor> newColor)
 	}
 }
 
-
+FLinearColor AColorSwitching::ColorToValue(TEnumAsByte<ObjectColor> color)
+{
+	switch (color)
+	{
+	case ObjectColor::RED :
+		return FLinearColor(1.0f, 0.0f, 0.0f);
+	case ObjectColor::BLUE :
+		return FLinearColor(0.0f, 0.0f, 1.0f);
+	case ObjectColor::GREEN :
+		return FLinearColor(0.0f, 1.0f, 0.0f);
+	case ObjectColor::YELLOW :
+		return FLinearColor(1.0f, 1.0f, 0.0f);
+	default:
+		return FLinearColor(1.0f, 1.0f, 1.0f);
+	}
+}
 
