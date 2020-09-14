@@ -29,4 +29,5 @@ void ALevelManager::InitLevel()
 void ALevelManager::LevelLost()
 {
 	isGameOver = true;
+	ALevelManager::GameOver(false);
 }
