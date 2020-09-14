@@ -14,7 +14,7 @@ class FILLBALL_API UColorActorComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(VisibleAnywhere, EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ColorSwitching")
 		TEnumAsByte<ObjectColor> objectColor = ObjectColor::RED;
 
 public:	
@@ -28,7 +28,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	UFUNCTION(BlueprintCallable, Category = "ColorActor")
+	UFUNCTION(BlueprintCallable, Category = "ColorActorComponent")
 		void ColorChanged(TEnumAsByte<ObjectColor> newColor);
 
 protected:
