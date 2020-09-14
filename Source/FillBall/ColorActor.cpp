@@ -49,10 +49,9 @@ void AColorActor::SetActive(bool active)
 
 void AColorActor::UpdateMaterialColor()
 {
-	UStaticMeshComponent* mesh = this->FindComponentByClass<UStaticMeshComponent>();
+	UMeshComponent* mesh = this->FindComponentByClass<UStaticMeshComponent>();
 	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), this);
 	FLinearColor newColor = AColorSwitching::ColorToValue(objectColor);
-	material->SetVectorParameterValue(FName(TEXT("BaseColor")), newColor);
+	material->SetVectorParameterValue(FName(TEXT("Color")), newColor);
 	mesh->SetMaterial(0, material);
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, newColor.ToRGBE(), TEXT("COLOR CHANGED"));
 }
