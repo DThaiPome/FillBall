@@ -8,7 +8,7 @@
 #include "ColorActorComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FILLBALL_API UColorActorComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -30,6 +30,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	UFUNCTION(BlueprintCallable, Category = "ColorActorComponent")
 		void ColorChanged(TEnumAsByte<ObjectColor> newColor);
+	UFUNCTION(BlueprintCallable, Category = "ColorActorComponent")
+		void UpdateMaterialColor(FName colorParameterName);
 
 protected:
 	void SetActive(bool active);

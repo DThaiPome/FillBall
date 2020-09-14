@@ -7,7 +7,7 @@
 #include "ObjectColor.h"
 #include "ColorPickup.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class FILLBALL_API AColorPickup : public AActor
 {
 	GENERATED_BODY()
@@ -29,6 +29,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable, Category = "ColorPickup")
 		void OnPickup();
+	UFUNCTION(BlueprintCallable, Category = "ColorPickup")
+		void UpdateMaterialColor(FName colorParameterName);
 
 protected:
 	void SetActive(bool active);

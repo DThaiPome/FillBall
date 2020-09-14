@@ -2,6 +2,7 @@
 
 
 #include "ColorActorComponent.h"
+#include "ColorSwitching.h"
 
 // Sets default values for this component's properties
 UColorActorComponent::UColorActorComponent()
@@ -47,4 +48,13 @@ void UColorActorComponent::SetActive(bool active)
 
 	// Stops the Actor from ticking
 	GetOwner()->SetActorTickEnabled(active);
+}
+
+void UColorActorComponent::UpdateMaterialColor(FName colorParameterName)
+{
+	UMeshComponent* mesh = GetOwner()->FindComponentByClass<UStaticMeshComponent>();
+	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), GetOwner());
+	FLinearColor newColor = AColorSwitching::ColorToValue(objectColor);
+	material->SetVectorParameterValue(colorParameterName, newColor);
+	mesh->SetMaterial(0, material);
 }

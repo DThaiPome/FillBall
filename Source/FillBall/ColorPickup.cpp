@@ -2,6 +2,7 @@
 
 
 #include "ColorPickup.h"
+#include "ColorSwitching.h"
 
 // Sets default values
 AColorPickup::AColorPickup()
@@ -39,4 +40,13 @@ void AColorPickup::SetActive(bool active)
 
 	// Stops the Actor from ticking
 	this->SetActorTickEnabled(active);
+}
+
+void AColorPickup::UpdateMaterialColor(FName colorParameterName)
+{
+	UMeshComponent* mesh = this->FindComponentByClass<UStaticMeshComponent>();
+	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), this);
+	FLinearColor newColor = AColorSwitching::ColorToValue(color);
+	material->SetVectorParameterValue(colorParameterName, newColor);
+	mesh->SetMaterial(0, material);
 }
