@@ -8,6 +8,8 @@
 #include "ObjectColor.h"
 #include "ColorSwitching.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FColorChangeDelegate, TEnumAsByte<ObjectColor>, color);
+
 /**
  * 
  */
@@ -17,17 +19,15 @@ class FILLBALL_API AColorSwitching : public ALevelManager
 	GENERATED_BODY()
 
 public:
-	DECLARE_EVENT_OneParam(AColorSwitching, FColorChangedEvent, TEnumAsByte<ObjectColor>)
-	FColorChangedEvent& OnColorChange(TEnumAsByte<ObjectColor> color) { return ColorChangedEvent; }
+	
+	UPROPERTY(BlueprintAssignable, Category = "Test")
+		FColorChangeDelegate OnColorChange;
 
 protected:
 	void BroadcastChanged(TEnumAsByte<ObjectColor> color)
 	{
-		ColorChangedEvent.Broadcast(color);
+		OnColorChange.Broadcast(color);
 	}
-
-private:
-	FColorChangedEvent ColorChangedEvent;
 
 public:
 	UPROPERTY(BlueprintReadOnly)
