@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "LevelManager.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameOverDelegate, bool, levelWon);
+
 /**
  * 
  */
@@ -15,6 +17,9 @@ class FILLBALL_API ALevelManager : public AGameModeBase
 	GENERATED_BODY()
 	
 public:
+	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
+		FGameOverDelegate OnGameOver;
+
 	UPROPERTY(BlueprintReadOnly)
 		bool isGameOver = false;
 
@@ -39,6 +44,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "LevelManager")
 	void LevelLost();
+
+	UFUNCTION(BlueprintCallable, Category = "LevelManager")
+	void GameOver(bool levelWon)
+	{
+		OnGameOver.Broadcast(levelWon);
+	}
 
 protected:
 	void RestartLevel();

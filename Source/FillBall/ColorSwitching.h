@@ -20,7 +20,7 @@ class FILLBALL_API AColorSwitching : public ALevelManager
 
 public:
 	
-	UPROPERTY(BlueprintAssignable, Category = "Test")
+	UPROPERTY(BlueprintAssignable, Category = "ColorSwitching")
 		FColorChangeDelegate OnColorChange;
 
 protected:
