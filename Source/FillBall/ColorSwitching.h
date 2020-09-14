@@ -17,6 +17,19 @@ class FILLBALL_API AColorSwitching : public ALevelManager
 	GENERATED_BODY()
 
 public:
+	DECLARE_EVENT_OneParam(AColorSwitching, FColorChangedEvent, TEnumAsByte<ObjectColor>)
+	FColorChangedEvent& OnColorChange(TEnumAsByte<ObjectColor> color) { return ColorChangedEvent; }
+
+protected:
+	void BroadcastChanged(TEnumAsByte<ObjectColor> color)
+	{
+		ColorChangedEvent.Broadcast(color);
+	}
+
+private:
+	FColorChangedEvent ColorChangedEvent;
+
+public:
 	UPROPERTY(BlueprintReadOnly)
 		TEnumAsByte<ObjectColor> currentColor;
 
