@@ -14,7 +14,7 @@ class FILLBALL_API UColorActorComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(VisibleAnywhere, EditAnywhere, BlueprintReadWrite)
 		TEnumAsByte<ObjectColor> objectColor = ObjectColor::RED;
 
 public:	
