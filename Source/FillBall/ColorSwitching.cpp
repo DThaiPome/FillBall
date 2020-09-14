@@ -20,7 +20,8 @@ void AColorSwitching::ChangeColor(TEnumAsByte<ObjectColor> newColor)
 {
 	currentColor = newColor;
 
-	UpdateColorActors(newColor);
+	BroadcastChanged(newColor);
+	//UpdateColorActors(newColor);
 }
 
 void AColorSwitching::UpdateColorActors(TEnumAsByte<ObjectColor> newColor)
