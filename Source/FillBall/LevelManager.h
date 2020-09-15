@@ -46,6 +46,9 @@ public:
 	void LevelLost();
 
 	UFUNCTION(BlueprintCallable, Category = "LevelManager")
+		FName GetNextLevel(TArray<FName> levelNames, FName endLevelName, FName currentLevelName);
+
+	UFUNCTION(BlueprintCallable, Category = "LevelManager")
 	void GameOver(bool levelWon)
 	{
 		OnGameOver.Broadcast(levelWon);

@@ -31,3 +31,17 @@ void ALevelManager::LevelLost()
 	isGameOver = true;
 	ALevelManager::GameOver(false);
 }
+
+FName ALevelManager::GetNextLevel(TArray<FName> levelNames, FName endLevelName, FName currentLevelName)
+{
+	int levelCount = levelNames.Num();
+	for(int i = 0; i < levelCount - 1; i++)
+	{
+		FName name = levelNames[i];
+		if (name.Compare(currentLevelName))
+		{
+			return levelNames[i + 1];
+		}
+	}
+	return endLevelName;
+}
