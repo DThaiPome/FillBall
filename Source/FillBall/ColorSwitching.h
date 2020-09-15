@@ -46,6 +46,8 @@ public:
 		void ChangeColor(TEnumAsByte<ObjectColor> newColor);
 	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
 	static FLinearColor ColorToValue(TEnumAsByte<ObjectColor> color);
+	UFUNCTION(BlueprintCallable, Category = "ColorSwitching")
+		static void UpdateMaterialColor(UMeshComponent* mesh, TEnumAsByte<ObjectColor> color, FName colorParameterName);
 	
 protected:
 	void UpdateColorActors(TEnumAsByte<ObjectColor> newColor);

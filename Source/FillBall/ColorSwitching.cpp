@@ -51,3 +51,11 @@ FLinearColor AColorSwitching::ColorToValue(TEnumAsByte<ObjectColor> color)
 	}
 }
 
+void AColorSwitching::UpdateMaterialColor(UMeshComponent* mesh, TEnumAsByte<ObjectColor> color, FName colorParameterName)
+{
+	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), mesh->GetOwner());
+	FLinearColor newColor = AColorSwitching::ColorToValue(color);
+	material->SetVectorParameterValue(colorParameterName, newColor);
+	mesh->SetMaterial(0, material);
+}
+
