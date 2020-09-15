@@ -32,6 +32,12 @@ void ALevelManager::LevelLost()
 	ALevelManager::GameOver(false);
 }
 
+void ALevelManager::LevelWon()
+{
+	isGameOver = true;
+	ALevelManager::GameOver(true);
+}
+
 FName ALevelManager::GetNextLevel(TArray<FName> levelNames, FName endLevelName, FName currentLevelName)
 {
 	int levelCount = levelNames.Num();
