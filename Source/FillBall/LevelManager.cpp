@@ -44,7 +44,7 @@ FName ALevelManager::GetNextLevel(TArray<FName> levelNames, FName endLevelName, 
 	for(int i = 0; i < levelCount - 1; i++)
 	{
 		FName name = levelNames[i];
-		if (name.Compare(currentLevelName))
+		if (name.Compare(currentLevelName) == 0)
 		{
 			return levelNames[i + 1];
 		}
