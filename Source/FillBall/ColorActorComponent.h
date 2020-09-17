@@ -35,4 +35,5 @@ public:
 
 protected:
 	void SetActive(bool active);
+	void SetVisibility(bool visible);
 };

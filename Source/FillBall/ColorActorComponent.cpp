@@ -36,7 +36,7 @@ void UColorActorComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 void UColorActorComponent::ColorChanged(TEnumAsByte<ObjectColor> color)
 {
 	bool colorMatches = color == objectColor;
-	SetActive(colorMatches);
+	SetVisibility(colorMatches);
 }
 
 void UColorActorComponent::SetActive(bool active)
@@ -45,9 +45,25 @@ void UColorActorComponent::SetActive(bool active)
 
 	// Disables collision components
 	GetOwner()->SetActorEnableCollision(active);
+}
 
-	// Stops the Actor from ticking
-	GetOwner()->SetActorTickEnabled(active);
+void UColorActorComponent::SetVisibility(bool visible)
+{
+	GetOwner()->SetActorEnableCollision(visible);
+
+	UMeshComponent* mesh = GetOwner()->FindComponentByClass<UStaticMeshComponent>();
+	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), GetOwner());
+	float newValue;
+	if (visible)
+	{
+		newValue = 1;
+	}
+	else
+	{
+		newValue = 0;
+	}
+	material->SetScalarParameterValue(TEXT("Opacity"), newValue);
+	mesh->SetMaterial(0, material);
 }
 
 void UColorActorComponent::UpdateMaterialColor(FName colorParameterName)
