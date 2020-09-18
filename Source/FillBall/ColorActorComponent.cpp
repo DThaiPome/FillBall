@@ -22,6 +22,9 @@ void UColorActorComponent::BeginPlay()
 
 	// ...
 	
+	//UMeshComponent* mesh = GetOwner()->FindComponentByClass<UStaticMeshComponent>();
+	//materialInstance = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), GetOwner());
+	//mesh->SetMaterial(0, materialInstance);
 }
 
 
@@ -36,7 +39,7 @@ void UColorActorComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 void UColorActorComponent::ColorChanged(TEnumAsByte<ObjectColor> color)
 {
 	bool colorMatches = color == objectColor;
-	SetVisibility(colorMatches);
+	SetActive(colorMatches);
 }
 
 void UColorActorComponent::SetActive(bool active)
@@ -53,6 +56,7 @@ void UColorActorComponent::SetVisibility(bool visible)
 
 	UMeshComponent* mesh = GetOwner()->FindComponentByClass<UStaticMeshComponent>();
 	UMaterialInstanceDynamic* material = UMaterialInstanceDynamic::Create(mesh->GetMaterial(0), GetOwner());
+
 	float newValue;
 	if (visible)
 	{
