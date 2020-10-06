@@ -7,6 +7,8 @@
 #include "LevelManager.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameOverDelegate, bool, levelWon);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLevelLoadRequestDelegate, FName, levelName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FLevelChangeRequestDelegate, FName, currentLevelName, FName, nextLevelName);
 
 /**
  * 
@@ -19,6 +21,12 @@ class FILLBALL_API ALevelManager : public AGameModeBase
 public:
 	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
 		FGameOverDelegate OnGameOver;
+
+	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
+		FLevelLoadRequestDelegate OnLevelLoadRequest;
+
+	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
+		FLevelChangeRequestDelegate OnLevelChangeRequest;
 
 	UPROPERTY(BlueprintReadOnly)
 		bool isGameOver = false;
@@ -55,6 +63,17 @@ public:
 	void GameOver(bool levelWon)
 	{
 		OnGameOver.Broadcast(levelWon);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "LevelManager")
+	void RequestLoadStreamLevel(FName levelName) {
+		OnLevelLoadRequest.Broadcast(levelName);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "LevelManager")
+	void RequestChangeStreamLevel(FName currentLevelName, FName nextLevelName)
+	{
+		OnLevelChangeRequest.Broadcast(currentLevelName, nextLevelName);
 	}
 
 protected:
