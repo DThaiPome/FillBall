@@ -9,6 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameOverDelegate, bool, levelWon);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLevelLoadRequestDelegate, FName, levelName);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FLevelChangeRequestDelegate, FName, currentLevelName, FName, nextLevelName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FLevelLoadedDelegate, FName, loadedLevelName);
 
 /**
  * 
@@ -27,6 +28,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
 		FLevelChangeRequestDelegate OnLevelChangeRequest;
+
+	UPROPERTY(BlueprintAssignable, Category = "LevelManager")
+		FLevelLoadedDelegate OnLevelLoaded;
 
 	UPROPERTY(BlueprintReadOnly)
 		bool isGameOver = false;
@@ -74,6 +78,11 @@ public:
 	void RequestChangeStreamLevel(FName currentLevelName, FName nextLevelName)
 	{
 		OnLevelChangeRequest.Broadcast(currentLevelName, nextLevelName);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "LevelManager")
+	void SignalLevelLoaded(FName loadedLevel) {
+		OnLevelLoaded.Broadcast(loadedLevel);
 	}
 
 protected:
