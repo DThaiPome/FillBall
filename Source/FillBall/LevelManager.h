@@ -82,6 +82,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "LevelManager")
 	void SignalLevelLoaded(FName loadedLevel) {
+		isGameOver = false;
 		OnLevelLoaded.Broadcast(loadedLevel);
 	}
 
