@@ -23,7 +23,6 @@ void ALevelManager::Tick(float DeltaTime)
 void ALevelManager::InitLevel() 
 {
 	ALevelManager::isGameOver = false;
-	UE_LOG(LogTemp, Warning, TEXT("Level Manager Initialized"))
 }
 
 void ALevelManager::LevelLost()
